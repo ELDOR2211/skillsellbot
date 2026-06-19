@@ -1,11 +1,20 @@
+const http = require("http");
 const { Telegraf, Markup } = require("telegraf");
 
-const BOT_TOKEN = "8816398610:AAFr-Pkj-Dr9JZM_yEawc5PTAaGAxP4Um-c";
+const PORT = process.env.PORT || 3000;
+
+http.createServer((req, res) => {
+  res.writeHead(200);
+  res.end("bot is alive");
+}).listen(PORT, () => {
+  console.log("Server running on port " + PORT);
+});
+
+const bot = new Telegraf(process.env.BOT_TOKEN);
+
 const CHANNEL_INVITE = "https://t.me/SkillSelluz";
 const INSTAGRAM = "https://www.instagram.com/skillselluz/";
 const WEBSITE = "https://skillsell.uz";
-
-const bot = new Telegraf(BOT_TOKEN);
 
 bot.start((ctx) => {
   const name = ctx.from.first_name || "there";
